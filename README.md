@@ -21,8 +21,6 @@
 + Managers can create/remove menu items
 + Managers can add/remove Employees
 + Managers can assign roles to Employees
-
-
 + Employees/Managers can see pending/completed orders
 + Employees/Managers can add/remove stock from location
 + Employees/Managers can see the feedback score of the location
@@ -57,7 +55,6 @@
 + Users get 10 reward dollars points for every 20 dollars they spend
 + Users can use the rewards points at checkout
 + Users enter a tier for every 500/1000/1500 reward dollars they accrue and get discount coupons at random for 10%, 20%, or 35% off total order.
-
 + Employee Roles: Customer Service can respond to customer feedback
 + Employee Roles: Stocker enters items that are in stock
 + Employee Roles: Cashier/Cook/Custodial can log in and see their hours but have no additional features
