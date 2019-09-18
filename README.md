@@ -13,7 +13,8 @@
 
 ## User Stories
 
-Managers/Employees
+
+### Managers/Employees
  
 + Managers can have one or more locations they manage
 + Managers can change locations of Employees
@@ -27,8 +28,7 @@ Managers/Employees
 + Employees/Managers can see the feedback score of the location
 + Employees can see their managers
 
-Menu
-==================
+### Menu
 
 + Each restaurant has main menu items and unique items for that location
 + Menu should have 5 or more items
@@ -37,8 +37,7 @@ Menu
 + Stock of product decreases per item
 
 
-Users
-==================
+### Users
 
 + Users can order food as a guest or create an account
 + Users can add/remove food from order
@@ -46,15 +45,13 @@ Users
 + Users can choose to pick up/get delivered food
 
 
-Webpage
-==================
+### Webpage
 
 + Contact page with feedback form for user experience
 + There should be a link to another stores menu/page
 
 
-Extra 
-==================
+### Extra 
 
 + Users join a rewards program when they create an account and get sent a welcome email
 + Users get 10 reward dollars points for every 20 dollars they spend
