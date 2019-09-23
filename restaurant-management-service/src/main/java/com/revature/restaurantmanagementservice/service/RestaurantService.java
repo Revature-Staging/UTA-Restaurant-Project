@@ -10,19 +10,19 @@ import com.revature.restaurantmanagementservice.repository.RestaurantRepository;
 
 @Service
 public class RestaurantService {
-	
+
 	@Autowired
 	RestaurantRepository restaurantRepository;
 
 	public Iterable<Restaurant> findAll() {
-		
+
 		return restaurantRepository.findAll();
 	}
-	
+
 	public Restaurant findById(int id) {
 		Optional<Restaurant> restaurant = restaurantRepository.findById(id);
-		
-		if(restaurant.isPresent())
+
+		if (restaurant.isPresent())
 			return restaurant.get();
 		else
 			throw new NullPointerException();
