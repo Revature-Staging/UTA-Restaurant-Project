@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "menu_items")
 public class MenuItem {
@@ -24,6 +26,7 @@ public class MenuItem {
 	private String image;
 	private Integer supply;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "menuItems")
     private Set<Restaurant> restaurants = new HashSet<Restaurant>();
 
@@ -98,7 +101,7 @@ public class MenuItem {
 	@Override
 	public String toString() {
 		return "MenuItem [MenuItemId=" + MenuItemId + ", itemName=" + itemName + ", price=" + price + ", description="
-				+ description + ", image=" + image + ", supply=" + supply + ", restaurants=" + restaurants + "]";
+				+ description + ", image=" + image + ", supply=" + supply + "]";
 	}
 
 	

@@ -24,7 +24,6 @@ public class RestaurantService {
 	MenuRepository menuRepository;
 
 	public Iterable<Restaurant> findAll() {
-
 		return restaurantRepository.findAll();
 	}
 
@@ -42,14 +41,20 @@ public class RestaurantService {
 		Restaurant restaurant = findById(restaurantId);
 
 		Set<MenuItem> hs = restaurant.getMenuItems();
-		//hs.add(new MenuItem("Burrito", 3.99, 5));
+		hs.add(new MenuItem("Tacos", 3.99, 15));
 		restaurant.setMenuItems(hs);
 		restaurantRepository.save(restaurant);
 	}
 
 	public void deleteRestaurant(int id) {
 		restaurantRepository.deleteById(id);
-		
+
+	}
+
+	public Set<MenuItem> getMenuItems(int restaurantId) {
+		Restaurant restaurant = findById(restaurantId);
+		return restaurant.getMenuItems();
+
 	}
 
 }

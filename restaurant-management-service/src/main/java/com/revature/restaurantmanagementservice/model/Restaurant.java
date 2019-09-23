@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "restaurants")
 public class Restaurant {
@@ -99,7 +101,7 @@ public class Restaurant {
 	@Override
 	public String toString() {
 		return "Restaurant [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName + ", streetAddress="
-				+ streetAddress + ", zipCode=" + zipCode + ", rating=" + rating + ", menuItems=" + menuItems + "]";
+				+ streetAddress + ", zipCode=" + zipCode + ", rating=" + rating + "]";
 	}
 
 	
