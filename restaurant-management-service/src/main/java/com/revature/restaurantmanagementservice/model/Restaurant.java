@@ -1,10 +1,17 @@
 package com.revature.restaurantmanagementservice.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,10 +25,17 @@ public class Restaurant {
 	private String restaurantName;
 	private String streetAddress;
 	private Integer zipCode;
-	@Column(name="feedback_score")
+	@Column(name = "feedback_score")
 	private Double rating;
 
-	//private List<MenuItems> menuItems;
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+		name = "restaurant_menu_items",
+		joinColumns = { @JoinColumn(name = "restaurant_id") },
+		inverseJoinColumns = {
+			@JoinColumn(name = "menu_item_id") }
+	)
+	private Set<MenuItem> menuItems = new HashSet<MenuItem>();
 
 	public Restaurant() {
 		super();
@@ -73,11 +87,21 @@ public class Restaurant {
 	public void setRating(Double rating) {
 		this.rating = rating;
 	}
+	
+	public Set<MenuItem> getMenuItems() {
+		return menuItems;
+	}
+
+	public void setMenuItems(Set<MenuItem> menuItems) {
+		this.menuItems = menuItems;
+	}
 
 	@Override
 	public String toString() {
-		return "Restaurant [id=" + restaurantId + ", restaurantName=" + restaurantName + ", streetAddress=" + streetAddress
-				+ ", zipCode=" + zipCode + ", rating=" + rating + "]";
+		return "Restaurant [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName + ", streetAddress="
+				+ streetAddress + ", zipCode=" + zipCode + ", rating=" + rating + ", menuItems=" + menuItems + "]";
 	}
+
+	
 
 }

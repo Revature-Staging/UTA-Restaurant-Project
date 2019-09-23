@@ -9,19 +9,25 @@ import com.revature.restaurantmanagementservice.model.Restaurant;
 import com.revature.restaurantmanagementservice.service.RestaurantService;
 
 @RestController
+@RequestMapping("/restaurants")
 public class RestaurantController {
 	
 	@Autowired
 	RestaurantService restaurantService;
 	
-	@RequestMapping("/restaurants/findAll")
+	@RequestMapping("/findAll")
 	public Iterable<Restaurant> findAllRestaurants() {
 		return restaurantService.findAll();
 	}
 	
-	@RequestMapping("/restaurants/{id}")
+	@RequestMapping("/{id}")
 	public Restaurant findRestaurantById(@PathVariable int id) {
 		return restaurantService.findById(id);
+	}
+	
+	@RequestMapping("/delete/{id}")
+	public void deleteRestaurant(@PathVariable int id) {
+		restaurantService.deleteRestaurant(id);
 	}
 
 }

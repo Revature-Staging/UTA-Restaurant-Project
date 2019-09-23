@@ -1,41 +1,50 @@
 package com.revature.restaurantmanagementservice.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "menu_items")
-public class MenuItems {
+public class MenuItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer MenuItemId;
 
 	private String itemName;
 	private Double price;
 	private String description;
 	private String image;
 	private Integer supply;
+	
+	@ManyToMany(mappedBy = "menuItems")
+    private Set<Restaurant> restaurants = new HashSet<Restaurant>();
 
-	public MenuItems() {
+	
+	public MenuItem() {
 		super();
 	}
 
-	public MenuItems(String itemName, Double price) {
+	public MenuItem(String itemName, Double price, Integer supply) {
 		super();
 		this.itemName = itemName;
 		this.price = price;
+		this.supply = supply;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getMenuItemId() {
+		return MenuItemId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setMenuItemId(Integer menuItemId) {
+		MenuItemId = menuItemId;
 	}
 
 	public String getItemName() {
@@ -77,11 +86,21 @@ public class MenuItems {
 	public void setSupply(Integer supply) {
 		this.supply = supply;
 	}
+	
+	public Set<Restaurant> getRestaurants() {
+		return restaurants;
+	}
+
+	public void setRestaurants(Set<Restaurant> restaurants) {
+		this.restaurants = restaurants;
+	}
 
 	@Override
 	public String toString() {
-		return "MenuItems [id=" + id + ", itemName=" + itemName + ", price=" + price + ", description=" + description
-				+ ", image=" + image + ", supply=" + supply + "]";
+		return "MenuItem [MenuItemId=" + MenuItemId + ", itemName=" + itemName + ", price=" + price + ", description="
+				+ description + ", image=" + image + ", supply=" + supply + ", restaurants=" + restaurants + "]";
 	}
+
+	
 
 }
