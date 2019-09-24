@@ -37,5 +37,10 @@ public class RestaurantController {
 	public Set<MenuItem> findRestaurantMenuItems(@PathVariable int id) {
 		return restaurantService.getMenuItems(id);
 	}
+	
+	@RequestMapping("rating/{id}")
+	public Double findRestaurantRating(@PathVariable int id) {
+		return restaurantService.getFeedbackScore(id);
+	}
 
 }
