@@ -1,6 +1,6 @@
 CREATE TABLE Job_Roles (
 	role_id INT PRIMARY KEY,
-	job_role varchar(10) NOT NULL
+	job_role varchar(10) NOT NULL UNIQUE
 );
 
 CREATE TABLE Employees (
