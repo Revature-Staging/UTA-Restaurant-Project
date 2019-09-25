@@ -19,50 +19,58 @@ public class RestaurantService {
 	@Autowired
 	MenuRepository menuRepository;
 	@Autowired
-	Restaurant restaurant;
+	MenuService menuService;
 
-	public Iterable<Restaurant> findAll() {				// Returns an Iterable of all restaurants.
-		
+	public Iterable<Restaurant> findAll() { // Returns an Iterable of all restaurants.
+
 		return restaurantRepository.findAll();
 	}
 
-	public Restaurant findById(int id) {				// Returns a Restaurant by the given Id.
-		
+	public Restaurant findById(int id) { // Returns a Restaurant by the given Id.
 		Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
 		if (restaurantOptional.isPresent())
 			return restaurantOptional.get();
 		else
-			throw new NullPointerException();
+			throw new NullPointerException(); //Create Custom Exception
 	}
 
-
-
-	public void deleteRestaurant(int id) {				// Removes Restaurant by given Id.
-		
-		restaurantRepository.deleteById(id);
+	public Set<MenuItem> getMenuItems(int restaurantId) { // Returns Menu Items of Restaurant
+														  // by given Id.
+		Restaurant restaurant = findById(restaurantId);
+		return restaurant.getMenuItems();
 	}
-
 	
-	public void addMenuItem(int restaurantId) {			// Adds menu item to Restaurant.
-		
-		restaurant = findById(restaurantId);
+	public void addMenuItem(int restaurantId, MenuItem menuItem) { // Adds menu item to Restaurant.
+		Restaurant restaurant = findById(restaurantId);
 		Set<MenuItem> hs = restaurant.getMenuItems();
-		hs.add(new MenuItem("Tacos", 3.99, 15));		// Place Holder Code
+		hs.add(menuItem);
 		restaurant.setMenuItems(hs);
 		restaurantRepository.save(restaurant);
 	}
 	
-	
-	public Set<MenuItem> getMenuItems(int restaurantId) {		// Returns Menu Items of Restaurant
-																// by given Id.
-		restaurant = findById(restaurantId);
-		return restaurant.getMenuItems();
-	}
-	
-	//May not need to use, we could just getRestaurant as JSON and access rating field. 
-	public Double getFeedbackScore(int restaurantId) {			//Returns rating of Restaurant.
+	public void deleteMenuItem(int restaurantId, int menuItemId) {
 		
-		restaurant = findById(restaurantId);
-		return restaurant.getRating();
+		Restaurant restaurant = findById(restaurantId);
+		Set<MenuItem> menuItems = restaurant.getMenuItems();
+		
+		if(menuItems.size()>5) {	
+			MenuItem menuItemToRemove = menuService.getMenuItem(menuItemId);
+			
+			if(menuItems.contains(menuItemToRemove))
+				menuItems.remove(menuItemToRemove);
+			else {
+				System.out.println("Menu Item does not exist in this restaurant");
+				throw new NullPointerException();		//Custom Error message to say menu item doesn't exist
+			}
+		}
+		else {
+			System.out.println("Restaurant would have < 5 item if deleted.");
+			throw new NullPointerException();		//Custom Error message to say menu item doesn't exist
+		
+		}
+		
+		restaurant.setMenuItems(menuItems);
+		restaurantRepository.save(restaurant);
 	}
+
 }
