@@ -12,36 +12,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employees")
 public class Employee {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer employee_id;
-	private String firstname;
-	private String lastname;
-	private String username;
-	private String password;
-	private String email;
-	private Integer job_role_id;
-//	@ManyToOne//(cascade = { CascadeType.ALL })
-//	@JoinColumn(name = "job_role_id")
-//	private JobRole role_id;
-
-	public Employee() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Employee(Integer employeeID, String firstname, String lastname, String username, String password,
-			String email, Integer job_role_id) {
-		super();
-		this.employee_id = employeeID;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.job_role_id = job_role_id;
-	}
+	protected Integer employee_id;
+	protected String firstname;
+	protected String lastname;
+	protected String username;
+	protected String password;
+	protected String email;
+	@ManyToOne
+	@JoinColumn(name = "job_role_id")
+	protected JobRole role_id;
 
 	public Integer getEmployeeID() {
 		return employee_id;
@@ -91,19 +73,36 @@ public class Employee {
 		this.email = email;
 	}
 
-	public Integer getJob_role_id() {
-		return job_role_id;
+	public JobRole getJob_role_id() {
+		return role_id;
 	}
 
-	public void setJob_role_id(Integer job_role_id) {
-		this.job_role_id = job_role_id;
+	public void setJob_role_id(JobRole job_role_id) {
+		this.role_id = job_role_id;
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [employeeID=" + employee_id + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", username=" + username + ", password=" + password + ", email=" + email + ", job_role_id=" + job_role_id
+				+ ", username=" + username + ", password=" + password + ", email=" + email + ", job_role_id=" + role_id
 				+ "]";
+	}
+
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Employee(Integer employeeID, String firstname, String lastname, String username, String password,
+			String email, JobRole job_role_id) {
+		super();
+		this.employee_id = employeeID;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.role_id = job_role_id;
 	}
 
 }
