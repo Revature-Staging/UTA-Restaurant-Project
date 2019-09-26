@@ -11,9 +11,9 @@ import javax.persistence.Table;
 public class RestaurantEmployee {
 
 	@Id
-	@OneToOne
-	@JoinColumn(name = "employee_id")
-	protected Employee employee_id;
+	/*@OneToOne 
+	@JoinColumn(name = "employee_id")*/
+	protected Integer employee_id;
 	protected Integer restaurant_id;
 
 	public RestaurantEmployee() {
@@ -21,17 +21,17 @@ public class RestaurantEmployee {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RestaurantEmployee(Employee employee_id, Integer restaurant_id) {
+	public RestaurantEmployee(Integer employee_id, Integer restaurant_id) {
 		super();
 		this.employee_id = employee_id;
 		this.restaurant_id = restaurant_id;
 	}
 
-	public Employee getEmployee_id() {
+	public Integer getEmployee_id() {
 		return employee_id;
 	}
 
-	public void setEmployee_id(Employee employee_id) {
+	public void setEmployee_id(Integer employee_id) {
 		this.employee_id = employee_id;
 	}
 

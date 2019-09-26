@@ -2,7 +2,6 @@ package com.revature.EmployeeManager.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.revature.EmployeeManager.Model.Employee;
 import com.revature.EmployeeManager.Model.JobRole;
 import com.revature.EmployeeManager.Model.RestaurantEmployee;
+import com.revature.EmployeeManager.Model.RestaurantManager;
 import com.revature.EmployeeManager.Repository.EmployeeRepository;
 import com.revature.EmployeeManager.Repository.JobRolesRepository;
 import com.revature.EmployeeManager.Repository.RestaurantEmployeeRepository;
+import com.revature.EmployeeManager.Repository.RestaurantManagerRepository;
 
 @Service
 public class EmployeeService {
@@ -23,6 +24,8 @@ public class EmployeeService {
 	JobRolesRepository jobRolesRepository;
 	@Autowired
 	RestaurantEmployeeRepository restaurantEmployeeRepository;
+	@Autowired
+	RestaurantManagerRepository restaurantManagerRepository;
 
 	public Iterable<Employee> findAll() { // Returns an iterable of all
 											// Employees
@@ -67,6 +70,10 @@ public class EmployeeService {
 		restaurantEmployeeRepository.save(restEmp);
 		/*Set<Integer> idSet = new Set<>();
 		idSet.add(emp.getEmployeeID());
-		List<RestaurantEmployee> set = restaurantEmployeeRepository.findAllById(idSet);*/ 
+		List<RestaurantEmployee> set = restaurantEmployeeRepository.findAllById(idSet); */
+	}
+	
+	public Iterable<RestaurantManager> findAllRestaurantManager(int id){
+		return restaurantManagerRepository.findByemployeeId(id);
 	}
 }

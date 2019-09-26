@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.EmployeeManager.Model.Employee;
+import com.revature.EmployeeManager.Model.RestaurantManager;
 import com.revature.EmployeeManager.Service.EmployeeService;
 
 @RestController
@@ -42,6 +43,11 @@ public class EmployeeController {
 	@PutMapping("/updateEmployee")
 	public void updateEmployee(@RequestBody Employee emp){
 		employeeService.updateEmployee(emp);
+	}
+	
+	@GetMapping("/findRestaurantManagersByID/{id}")
+	public Iterable<RestaurantManager>findAllRestMan(@PathVariable int id) {
+		return employeeService.findAllRestaurantManager(id);
 	}
 
 }
