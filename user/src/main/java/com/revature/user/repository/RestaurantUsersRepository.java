@@ -6,6 +6,12 @@ import org.springframework.stereotype.Repository;
 import com.revature.user.model.RestaurantUsers;
 
 @Repository
-public interface RestaurantUsersDao extends JpaRepository<RestaurantUsers, Integer> {
+public interface RestaurantUsersRepository extends JpaRepository<RestaurantUsers, Integer> {
 	RestaurantUsers findByUserName(String userName);
 }
+
+
+
+
+
+

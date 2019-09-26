@@ -8,27 +8,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.revature.user.model.RestaurantUsers;
-import com.revature.user.repository.RestaurantUsersDao;
+import com.revature.user.service.RestaurantUsersService;
 
 @RestController
 public class RestaurantUsersController {
 	
 	@Autowired
-	RestaurantUsersDao dao;
+	RestaurantUsersService svc;
 	
 	@GetMapping("/restaurant-users")
 	public List<RestaurantUsers> getAll() {
-		List<RestaurantUsers> restaurantUsers = dao.findAll();
+		List<RestaurantUsers> restaurantUsers = svc.getAll();
 		return restaurantUsers;
 	}
 	
 	@GetMapping("/restaurant-users/username/{name}")
-	public RestaurantUsers getByProduceType(@PathVariable("name") String userName) {
-		return dao.findByUserName(userName);
+	public RestaurantUsers getByUserName(@PathVariable("name") String userName) {
+		return svc.getByUserName(userName);
 	}
 
 	@GetMapping("/restaurant-users/id/{id}")
 	public Optional<RestaurantUsers> getById(@PathVariable("id") Integer id) {
-		return dao.findById(id);
+		return svc.getById(id);
 	}
 }
