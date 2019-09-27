@@ -1,6 +1,5 @@
 package com.revature.EmployeeManager.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +74,9 @@ public class EmployeeService {
 	
 	public Iterable<RestaurantManager> findAllRestaurantManager(int id){
 		return restaurantManagerRepository.findByemployeeId(id);
+	}
+	
+	public Iterable<RestaurantEmployee> findAllRestaurantEmployee(int id){
+		return restaurantEmployeeRepository.findByrestaurantId(id);
 	}
 }
